@@ -8,6 +8,8 @@ public class Main {
         JFrame frame = new JFrame("single-channel queuing model");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Calculations calc = new Calculations();
+
         JLabel lambdaLbl = new JLabel("λ:");
         JTextField lambda = new JTextField(20);
 
@@ -16,12 +18,22 @@ public class Main {
 
         JButton calculateBtn = new JButton("calculate");
 
+        JLabel L = new JLabel();
+        JLabel W = new JLabel();
+
+        JPanel optPanel = new JPanel();
+        BoxLayout optLayout = new BoxLayout(optPanel,BoxLayout.Y_AXIS);
+        optPanel.setLayout(optLayout);
+        optPanel.add(L);
+        optPanel.add(W);
+
+
+
         calculateBtn.addActionListener(e->{
-            Calculations calc = new Calculations();
             calc.setLambda(Float.parseFloat(lambda.getText()));
             calc.setMu(Float.parseFloat(mu.getText()));
-            System.out.println(calc.L());
-            System.out.println(calc.W());
+            L.setText("L = "+Float.toString(calc.L()));
+            W.setText("W = "+Float.toString(calc.W()));
         });
 
         JPanel panel = new JPanel();
@@ -34,8 +46,9 @@ public class Main {
         panel.add(calculateBtn);
 
         frame.setLayout(new BorderLayout());
-        frame.add(panel,BorderLayout.CENTER);
-        frame.setSize(600,300);
+        frame.add(panel,BorderLayout.NORTH);
+        frame.add(optPanel,BorderLayout.CENTER);
+        frame.setSize(580,300);
         frame.setVisible(true);
     }
 
