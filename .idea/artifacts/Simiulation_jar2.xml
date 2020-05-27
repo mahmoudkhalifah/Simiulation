@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Simiulation:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Simiulation_jar2</output-path>
+    <root id="archive" name="Simiulation.jar">
+      <element id="module-output" name="Simiulation" />
+    </root>
+  </artifact>
+</component>

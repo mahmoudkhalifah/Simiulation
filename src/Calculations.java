@@ -45,7 +45,6 @@ public class Calculations {
     public float TC() { return (cs+TWCq()); }
 
     public float[] Pk(float arr []) {
-
         float p = lambda / mu;
         for (int i = 0; i <= 7; i++) {
             arr[i] = (float) Math.pow(p,(i + 1));

@@ -32,30 +32,35 @@ public class Main {
                 float c =Float.parseFloat(cs.getText());
                 float w =Float.parseFloat(cw.getText());
                 if(m>0 && l>0 && c>0 && w>0){
-                    Calculations calc = new Calculations();
-                    calc.setLambda(Float.parseFloat(lambda.getText()));
-                    calc.setMu(Float.parseFloat(mu.getText()));
-                    calc.setCs(Float.parseFloat(cs.getText()));
-                    calc.setCw(Float.parseFloat(cw.getText()));
-                    area.setText(
-                            "   1- average number of costumers in the system = "+calc.L()+
-                            "\n   2- average time a customer spends in the system = "+calc.W()+
-                            "\n   3- average number of costumers in the queue = "+calc.Lq()+
-                            "\n   4- average time a customer spends in the queue = "+calc.Wq()+
-                            "\n   5- probability the service facility is being used = "+calc.P()+
-                            "\n   6- the probability no one is in the system = "+calc.P0()+
-                            "\n   7-The probability that the number of customers in the system is greater than k"
-                    );
-                    float arr[] = new float[8];
-                    calc.Pk(arr);
-                    for (int i=0;i<8;i++) {
-                        area.setText(area.getText()+"\n"+"\tk = "+i+"\t p = " + arr[i]);
+                    if(m>l) {
+                        Calculations calc = new Calculations();
+                        calc.setLambda(Float.parseFloat(lambda.getText()));
+                        calc.setMu(Float.parseFloat(mu.getText()));
+                        calc.setCs(Float.parseFloat(cs.getText()));
+                        calc.setCw(Float.parseFloat(cw.getText()));
+                        area.setText(
+                                "   1- average number of costumers in the system = " + calc.L() +
+                                        "\n   2- average time a customer spends in the system = " + calc.W() +
+                                        "\n   3- average number of costumers in the queue = " + calc.Lq() +
+                                        "\n   4- average time a customer spends in the queue = " + calc.Wq() +
+                                        "\n   5- probability the service facility is being used = " + calc.P() +
+                                        "\n   6- the probability no one is in the system = " + calc.P0() +
+                                        "\n   7-The probability that the number of customers in the system is greater than k"
+                        );
+                        float arr[] = new float[8];
+                        calc.Pk(arr);
+                        for (int i = 0; i < 8; i++) {
+                            area.setText(area.getText() + "\n" + "\tk = " + i + "\t p = " + arr[i]);
+                        }
+                        area.setText(
+                                area.getText() +
+                                        "\n   8- total waiting cost (q) = " + calc.TWCq() +
+                                        "\n   9- total cost = " + calc.TC()
+                        );
+                    } else {
+                        JOptionPane.showMessageDialog(null, "number of served must be greater than number of arrivals!",
+                                "ERROR!", JOptionPane.ERROR_MESSAGE);
                     }
-                    area.setText(
-                            area.getText()+
-                            "\n   8- total waiting cost (q) = "+calc.TWCq()+
-                            "\n   9- total cost = "+calc.TC()
-                    );
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Enter Valid positive numbers!",
